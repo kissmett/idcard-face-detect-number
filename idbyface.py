@@ -17,7 +17,7 @@ print(sys.getdefaultencoding())
 r=r'^([1-9]\d{5}[12]\d{3}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])\d{3}[0-9xX])$'
 
 ###########根据比例和偏移算出号码位置
-
+#一般面部比例
 def CalcIdRectByFaceRect_normal(x,y,w,h):
     #print(x,y,w,h)
     scale = float(w) / 95
@@ -29,6 +29,7 @@ def CalcIdRectByFaceRect_normal(x,y,w,h):
     #print( x1,y1,x2, y2)
     return ( x1,y1,x2, y2)
 
+#较大面部比例
 def CalcIdRectByFaceRect_big(x,y,w,h):
     scale = float(w) / 95
     x1 = int(x + (( 0 - 159) + 10) * scale)
@@ -37,7 +38,7 @@ def CalcIdRectByFaceRect_big(x,y,w,h):
     y2 = int(y +(0 + (149 - 3) + (45 - 10) ) * scale)
     return ( x1,y1,x2, y2)
 
-
+#较小面部比例
 def CalcIdRectByFaceRect_small(x,y,w,h):
     scale = float(w) / 95
     x1 = int(x + (( 0 - 159) - 10) * scale)
@@ -124,7 +125,7 @@ def GetRegionString(img,region):
     code = PostProc(code)
     return code
 
-######## 号码后处理
+######## 号码后处理  
 def PostProc(s):
     res = s
     res = res.replace(" ","")
